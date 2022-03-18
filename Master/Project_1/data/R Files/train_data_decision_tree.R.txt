@@ -1,0 +1,120 @@
+#Decision tree
+
+finalsim <- datasim
+
+finalsim_1 <- subset(finalsim, finalsim$X19 == 1 & (finalsim$X1==1 | finalsim$X2==1 | finalsim$X4==1 | 
+                                                             finalsim$X10==1 | finalsim$X11==1 | finalsim$X22==1 |
+                                                             finalsim$X12==1 | finalsim$X28==1))
+
+finalsim_1$Y<-3
+
+finalsim_2 <- subset(finalsim, finalsim$X19 == 1 & (finalsim$X1==0 & finalsim$X2==0 & finalsim$X4==0 & 
+                                                      finalsim$X10==0 & finalsim$X11==0 & finalsim$X22==0 &
+                                                      finalsim$X12==0 & finalsim$X28==0)
+                                                 & (finalsim$X5==1 | finalsim$X7==1 | finalsim$X8==1 | 
+                                                     finalsim$X9==1 | finalsim$X17==1 | finalsim$X27==1 |
+                                                     finalsim$X13==1 | finalsim$X3==1 | finalsim$X14==1 |
+                                                    finalsim$X18==1 | finalsim$X20==1 | finalsim$X16==1
+                                                  ))
+
+finalsim_2$Y<-2
+
+finalsim_3 <- subset(finalsim, finalsim$X19 == 1 & (finalsim$X1==0 & finalsim$X2==0 & finalsim$X4==0 & 
+                                                      finalsim$X10==0 & finalsim$X11==0 & finalsim$X22==0 &
+                                                      finalsim$X12==0 & finalsim$X28==0)
+                                                 & (finalsim$X5==0 & finalsim$X7==0 & finalsim$X8==0 & 
+                                                      finalsim$X9==0 & finalsim$X17==0 & finalsim$X27==0 &
+                                                      finalsim$X13==0 & finalsim$X3==0 & finalsim$X14==0 &
+                                                      finalsim$X18==0 & finalsim$X20==0 & finalsim$X16==0
+                                                 )
+                                                &  (finalsim$X26==1 | finalsim$X25==1 | finalsim$X24==1 | 
+                                                    finalsim$X23==1 | finalsim$X21==1 | finalsim$X15==1 |
+                                                    finalsim$X6==1 )
+                                                    )
+
+#none available for finalsim3...hence generating random data
+
+m = matrix(0,2560,8)
+
+for (i in 1:2560)
+{
+  m[i,] <- sample(c(0,1),  size=8 , replace=TRUE)
+}
+
+x1_x5 <- matrix(0,256,5)
+x7_x14 <- matrix(0, 256, 8)
+x16_x18 <- matrix(0, 256, 3)
+x20 <- rep(0, 256)
+x22 <- rep(0, 256)
+x27_x28 <- matrix(0, 256, 2)
+
+m <- unique(m)
+
+finalsim_3 <- as.data.frame(cbind(Case.ID,State,x1_x5,m[,1],x7_x14,m[,2],x16_x18,m[,8],x20,m[,3],x22,m[,4:7],x27_x28,as.numeric(YW),as.numeric(Y)))
+
+names(finalsim_3)=names(mainfile)
+
+finalsim_3$Y <- 1
+
+Case.ID <- seq(1, 256, 1)
+State <- rep('VA',256)
+YW <- rep(0,256)
+Y <- rep(0,256)
+
+finalsim_a <- subset(finalsim, finalsim$X19 == 0 & (finalsim$X1==1 | finalsim$X2==1 | finalsim$X4==1 | 
+                                                      finalsim$X10==1 | finalsim$X11==1 | finalsim$X22==1 |
+                                                      finalsim$X12==1 | finalsim$X28==1))
+
+finalsim_a$Y<-2
+
+finalsim_b <- subset(finalsim, finalsim$X19 == 0 & (finalsim$X1==0 & finalsim$X2==0 & finalsim$X4==0 & 
+                                                      finalsim$X10==0 & finalsim$X11==0 & finalsim$X22==0 &
+                                                      finalsim$X12==0 & finalsim$X28==0)
+                     & (finalsim$X5==1 | finalsim$X7==1 | finalsim$X8==1 | 
+                          finalsim$X9==1 | finalsim$X17==1 | finalsim$X27==1 |
+                          finalsim$X13==1 | finalsim$X3==1 | finalsim$X14==1 |
+                          finalsim$X18==1 | finalsim$X20==1 | finalsim$X16==1
+                     ))
+
+finalsim_b$Y<-1
+
+#none available for finalsim_c...hence generating random data
+
+n = matrix(0,2560,7)
+
+for (i in 1:2560)
+{
+  n[i,] <- sample(c(0,1),  size=7 , replace=TRUE)
+}
+
+x1_x5 <- matrix(0,128,5)
+x7_x14 <- matrix(0, 128, 8)
+x16_x19 <- matrix(0, 128, 4)
+x20 <- rep(0, 128)
+x22 <- rep(0, 128)
+x27_x28 <- matrix(0, 128, 2)
+
+n <- unique(n)
+
+finalsim_c <- as.data.frame(cbind(Case.ID,State,x1_x5,n[,1],x7_x14,n[,2],x16_x19,x20,n[,3],x22,n[,4:7],x27_x28,as.numeric(YW),as.numeric(Y)))
+
+names(finalsim_c)=names(mainfile)
+
+finalsim_c$Y <- 0
+
+Case.ID <- seq(1, 128, 1)
+State <- rep('VA',128)
+YW <- rep(0,128)
+Y <- rep(0,128)
+
+
+
+
+###############################################
+
+Combining
+
+
+school_shooter_db <- rbind(mainfile, finalsim_1, finalsim_2, finalsim_3, finalsim_a, finalsim_b, finalsim_c)
+
+write.csv(school_shooter_db, file='C:/Users/gayat/Documents/AI Sara/Master/Project_1/data/school_shooter_db.csv')

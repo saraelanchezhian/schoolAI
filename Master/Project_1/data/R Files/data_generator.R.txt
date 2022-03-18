@@ -1,0 +1,50 @@
+################ Train data ################
+for (i in 1:20000){
+t[i,] <- sample(c(0,1), size=7, p = c(0.9, 0.1), replace=TRUE)
+}
+
+s=matrix(0,20000,28)
+
+unique(t)
+
+Case.ID <- seq(71,200070,1)
+State <- rep('DD',200000)
+YW <- rep(0,200000)
+Y <- rep(0,200000)
+
+datasim <- as.data.frame(cbind(Case.ID,State,s,as.numeric(YW),as.numeric(Y)))
+
+names(datasim) = names(mainfile)
+
+datasim[,3:30] <- sapply(datasim[,3:30], as.numeric)
+
+
+
+################## Daily data ###################
+
+w = matrix(0, 5000, 28)
+
+for (i in 1:5000)
+{
+  w[i,] <- sample(c(0,1), prob = c(0.9, 0.1), size=28 , replace=TRUE)
+}
+
+Case.ID <- seq(1, 5000, 1)
+State <- rep('VA',5000)
+YW <- rep(0,5000)
+Y <- rep(0,5000)
+
+test_file <- as.data.frame(cbind(Case.ID,State,w,as.numeric(YW),as.numeric(Y)))
+
+names(test_file) = names(mainfile)
+
+##################### Mainfile ###########################
+
+mainfile <- read.csv(file='C:/Users/gayat/Downloads/Features_withweights')
+
+weights <- mainfile[32,]
+weights <- c(weights$X1, weights$X2, weights$X3, weights$X4, weights$X5, weights$X6, weights$X7, weights$X8, weights$X9, weights$X10,
+             weights$X11, weights$X12, weights$X13, weights$X14, weights$X15, weights$X16, weights$X17, weights$X18, weights$X19, weights$X20,
+             weights$X21, weights$X22, weights$X23, weights$X24, weights$X25, weights$X26, weights$X27, weights$X28)
+
+mainfile <- read.csv(file='C:/Users/gayat/Downloads/Features_new.csv')

@@ -1,0 +1,29 @@
+Covariate,Feature
+X1,Mental Illness
+X10,Verbal Shooting Threats
+X11,Physical Agression/ Anger Management Issues
+X12,Homicidal Triad - Arson/Animal Cruelty
+X13,Racism
+X14,Narcissistic 
+X15,Lack of Empathy
+X16,Affinity for Violence
+X17,Parental Separation
+X18,Financial Stress
+X19,Access or Exposure to Weapons
+X2,Suicide/Self Harm Risk
+X20,Parental Abuse
+X21,Foster Care
+X22,Parental Neglect
+X23,Family Suicidal History
+X24,Visit from Social Services
+X25,Family Member with Criminal Record
+X26,Death of an Immediate Family Member
+X27,Substance Abuse
+X28,Criminal Record
+X3,Counseling
+X4,Bullied
+X5,Suspension/Expulsion Records
+X6,Sexual Assault Victim
+X7,Antisocial
+X8,Isolated
+X9,Negative External Influence - Parent/Peer

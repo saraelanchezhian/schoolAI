@@ -1,0 +1,71 @@
+############################## daily data ###########################################################
+
+finalsim <- test_file
+
+finalsim_1 <- subset(finalsim, finalsim$X19 == 1 & (finalsim$X1==1 | finalsim$X2==1 | finalsim$X4==1 | 
+                                                      finalsim$X10==1 | finalsim$X11==1 | finalsim$X22==1 |
+                                                      finalsim$X12==1 | finalsim$X28==1))
+
+finalsim_1$Y<-3
+
+finalsim_2 <- subset(finalsim, finalsim$X19 == 1 & (finalsim$X1==0 & finalsim$X2==0 & finalsim$X4==0 & 
+                                                      finalsim$X10==0 & finalsim$X11==0 & finalsim$X22==0 &
+                                                      finalsim$X12==0 & finalsim$X28==0)
+                     & (finalsim$X5==1 | finalsim$X7==1 | finalsim$X8==1 | 
+                          finalsim$X9==1 | finalsim$X17==1 | finalsim$X27==1 |
+                          finalsim$X13==1 | finalsim$X3==1 | finalsim$X14==1 |
+                          finalsim$X18==1 | finalsim$X20==1 | finalsim$X16==1
+                     ))
+
+finalsim_2$Y<-2
+
+finalsim_3 <- subset(finalsim, finalsim$X19 == 1 & (finalsim$X1==0 & finalsim$X2==0 & finalsim$X4==0 & 
+                                                      finalsim$X10==0 & finalsim$X11==0 & finalsim$X22==0 &
+                                                      finalsim$X12==0 & finalsim$X28==0)
+                     & (finalsim$X5==0 & finalsim$X7==0 & finalsim$X8==0 & 
+                          finalsim$X9==0 & finalsim$X17==0 & finalsim$X27==0 &
+                          finalsim$X13==0 & finalsim$X3==0 & finalsim$X14==0 &
+                          finalsim$X18==0 & finalsim$X20==0 & finalsim$X16==0
+                     )
+                     &  (finalsim$X26==1 | finalsim$X25==1 | finalsim$X24==1 | 
+                           finalsim$X23==1 | finalsim$X21==1 | finalsim$X15==1 |
+                           finalsim$X6==1 )
+)
+nrow(finalsim_3)
+
+finalsim_a <- subset(finalsim, finalsim$X19 == 0 & (finalsim$X1==1 | finalsim$X2==1 | finalsim$X4==1 | 
+                                                      finalsim$X10==1 | finalsim$X11==1 | finalsim$X22==1 |
+                                                      finalsim$X12==1 | finalsim$X28==1))
+
+finalsim_a$Y<-2
+
+finalsim_b <- subset(finalsim, finalsim$X19 == 0 & (finalsim$X1==0 & finalsim$X2==0 & finalsim$X4==0 & 
+                                                      finalsim$X10==0 & finalsim$X11==0 & finalsim$X22==0 &
+                                                      finalsim$X12==0 & finalsim$X28==0)
+                     & (finalsim$X5==1 | finalsim$X7==1 | finalsim$X8==1 | 
+                          finalsim$X9==1 | finalsim$X17==1 | finalsim$X27==1 |
+                          finalsim$X13==1 | finalsim$X3==1 | finalsim$X14==1 |
+                          finalsim$X18==1 | finalsim$X20==1 | finalsim$X16==1
+                     ))
+
+finalsim_b$Y<-1
+
+finalsim_c <- subset(finalsim, finalsim$X19 == 0 & (finalsim$X1==0 & finalsim$X2==0 & finalsim$X4==0 & 
+                                                      finalsim$X10==0 & finalsim$X11==0 & finalsim$X22==0 &
+                                                      finalsim$X12==0 & finalsim$X28==0)
+                     & (finalsim$X5==0 & finalsim$X7==0 & finalsim$X8==0 & 
+                          finalsim$X9==0 & finalsim$X17==0 & finalsim$X27==0 &
+                          finalsim$X13==0 & finalsim$X3==0 & finalsim$X14==0 &
+                          finalsim$X18==0 & finalsim$X20==0 & finalsim$X16==0
+                     )
+                     &  (finalsim$X26==1 | finalsim$X25==1 | finalsim$X24==1 | 
+                           finalsim$X23==1 | finalsim$X21==1 | finalsim$X15==1 |
+                           finalsim$X6==1 )
+)
+nrow(finalsim_c)
+
+finalsim_c$Y <- 0
+
+daily_data <- rbind(finalsim_1, finalsim_2, finalsim_3, finalsim_a, finalsim_b, finalsim_c)
+
+write.csv(daily_data, file='C:/Users/gayat/Documents/AI Sara/Master/Project_1/data/daily_data.csv')

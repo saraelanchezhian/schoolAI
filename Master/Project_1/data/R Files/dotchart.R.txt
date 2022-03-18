@@ -1,0 +1,10 @@
+dotchart <- read.csv(file='C:/Users/gayat/Documents/AI Sara/Master/Project_1/data/dotchart.csv')
+
+# Plot and color by groups
+grps <- as.factor(dotchart$gno)
+my_cols <- c("#FF0000", "#0000FF", "#800000","#013220")
+dotchart(dotchart$prob, labels = dotchart$desc,
+         groups = grps, gcolor = "black",
+         color = my_cols[grps],
+         cex = 0.8,  pch = 19, xlab = "Probability",
+         main="Covariate Probability Distribution")

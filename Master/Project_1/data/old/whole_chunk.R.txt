@@ -1,0 +1,1140 @@
+mainfile <- read.csv(file='C:/Users/gayat/Downloads/Features_new.csv')
+
+weights_rev <- read.csv(file='C:/Users/gayat/Documents/DP Causal Inference/Features_w.csv')
+
+
+mainfile$Case.ID[mainfile$X6==1]
+
+tail(mainfile)
+
+weights <- mainfile[32,]
+
+highfile <- mainfile
+
+head(highfile)
+
+length(highfile[,8]) <- 0
+
+
+
+weights <- c(weights$X1, weights$X2, weights$X3, weights$X4, weights$X5, weights$X6, weights$X7, weights$X8, weights$X9, weights$X10,
+             weights$X11, weights$X12, weights$X13, weights$X14, weights$X15, weights$X16, weights$X17, weights$X18, weights$X19, weights$X20,
+             weights$X21, weights$X22, weights$X23, weights$X24, weights$X25, weights$X26, weights$X27, weights$X28)
+
+highfile$YW <- highfile$YW * length(weights)
+
+mainfile$Case.ID[mainfile$X21==1]
+
+for (i in 1:31) 
+    {
+  if (highfile[i,]$X11==1) {
+    print(highfile[i,]$Case.ID)
+    highfile[i,]$X11 <- 0
+    temp <- 0
+    for (j in 3:30) 
+      {
+      temp = temp + (highfile[i,j]*weights[j-2])
+    }
+    highfile[i,]$YW = temp
+    }
+}
+
+finalfile <- rbind(finalfile, highfile)
+
+highfile$Y <- 5
+
+highfinal <- 
+  
+subset(highfile, highfile$YW >= 1.225 & highfile$YW < 1.71)
+
+highfile$Case.ID[highfile$YW==1.225]
+
+highfile[15,]
+
+head(highfile)
+
+nrow(highfile[19,])
+
+weights
+
+highfile[2,]
+mainfile[2,]
+
+
+for (i in 1:28){
+  for (j in 1:28){
+    if (i != j & i!=21 & j!=21) {
+    s = subset(mainfile, mainfile[,i]==1 & mainfile[,j]==1)
+    n = nrow(s)
+    if (n ==11) {
+      print('first column')
+      print(i)
+      print('second column')
+      print(j)
+      
+      print('nrows')
+      
+      
+    print(n) }
+  }
+ }
+}
+###################################################################################
+
+highfile <- mainfile
+
+weights
+
+for (i in 1:31) 
+{
+  if (highfile[i,]$X9==1) 
+    {
+    print(highfile[i,]$Case.ID)
+    highfile[i,]$X9 <- 0
+    temp <- 0
+    for (j in 3:30) 
+    {
+      temp = temp + (highfile[i,j]*weights[j-2])
+    }
+    highfile[i,]$YW = temp
+  }
+}
+
+head(highfile)
+
+min(mainfile$YW)
+min(highfile$YW)
+
+nrow(subset(highfile, highfile$YW < 1.742))
+
+subset(highfile, highfile$YW >= 1.742)
+
+highfile_final <- subset(highfile, highfile$YW < 1.742)
+
+highfile_final$Y <- 4
+
+highfile_final_2 <- highfile_final
+
+for (i in 1:31)
+{
+  if (highfile[i,]$YW >= 1.258 & highfile[i,]$YW < 1.71)
+    print(highfile[i,]$Case.ID)
+}
+
+mainfile[3, 21] <- 1
+
+for (i in 1:31) 
+{
+  if (highfile[i,]$X19==1) 
+  {
+    print(highfile[i,]$Case.ID)
+    highfile[i,]$X19 <- 0
+    temp <- 0
+    for (j in 3:30) 
+    {
+      temp = temp + (highfile[i,j]*weights[j-2])
+    }
+    highfile[i,]$YW = temp
+  }
+}
+
+highfile <- mainfile
+
+highfile[,31]
+min(highfile$YW)
+
+#############################################################################
+Mute Behavioral
+
+mutedbehavioral <- mainfile
+
+nrow(mutedbehavioral)
+
+for (i in 1:31) 
+{
+  if (mutedbehavioral[i,]$X19==1) 
+  {
+    print(mutedbehavioral[i,]$Case.ID)
+    mutedbehavioral[i,]$X19 <- 0
+    temp <- 0
+    for (j in 3:30) 
+    {
+      temp = temp + (mutedbehavioral[i,j]*weights[j-2])
+    }
+    mutedbehavioral[i,]$YW = temp
+  }
+}
+
+for (i in 1:31) 
+{
+  if (mutedbehavioral[i,]$X16==1) 
+  {
+    print(mutedbehavioral[i,]$Case.ID)
+    mutedbehavioral[i,]$X16 <- 0
+    temp <- 0
+    for (j in 3:30) 
+    {
+      temp = temp + (mutedbehavioral[i,j]*weights[j-2])
+    }
+    mutedbehavioral[i,]$YW = temp
+  }
+}
+mutedbehavioral
+
+subset(mutedbehavioral, mutedbehavioral$YW < 1.742)
+
+highfile_final_3 <- subset(mutedbehavioral, mutedbehavioral$YW < 1.742)
+
+highfile_final_3$Y <- 4
+
+highfile_final_3
+
+nrow(subset(highfile_final_3))
+################################################################################
+Muted Familial
+
+mutedfamilial <- mainfile
+
+nrow(mutedfamilial)
+
+for (i in 1:31) 
+{
+  if (mutedfamilial[i,]$X19==1) 
+  {
+    print(mutedfamilial[i,]$Case.ID)
+    mutedfamilial[i,]$X19 <- 0
+    temp <- 0
+    for (j in 3:30) 
+    {
+      temp = temp + (mutedfamilial[i,j]*weights[j-2])
+    }
+    mutedfamilial[i,]$YW = temp
+  }
+}
+
+for (i in 1:31) 
+{
+  if (mutedfamilial[i,]$X26==1) 
+  {
+    print(mutedfamilial[i,]$Case.ID)
+    mutedfamilial[i,]$X26 <- 0
+    temp <- 0
+    for (j in 3:30) 
+    {
+      temp = temp + (mutedfamilial[i,j]*weights[j-2])
+    }
+    mutedfamilial[i,]$YW = temp
+  }
+}
+mutedfamilial
+
+subset(mutedfamilial, mutedfamilial$YW < 1.742)
+
+highfile_final_4 <- subset(mutedfamilial, mutedfamilial$YW < 1.742)
+
+highfile_final_4$Y <- 4
+
+highfile_final_4
+
+nrow(subset(highfile_final_4))
+################################################################################
+Others
+
+others <- mainfile
+
+nrow(others)
+
+for (i in 1:31) 
+{
+  if (others[i,]$X19==1) 
+  {
+    print(others[i,]$Case.ID)
+    others[i,]$X19 <- 0
+    temp <- 0
+    for (j in 3:30) 
+    {
+      temp = temp + (others[i,j]*weights[j-2])
+    }
+    others[i,]$YW = temp
+  }
+}
+
+for (i in 1:31) 
+{
+  if (others[i,]$X28==1) 
+  {
+    print(others[i,]$Case.ID)
+    others[i,]$X28 <- 0
+    temp <- 0
+    for (j in 3:30) 
+    {
+      temp = temp + (others[i,j]*weights[j-2])
+    }
+    others[i,]$YW = temp
+  }
+}
+others
+
+subset(others, others$YW < 1.742)
+
+highfile_final_5 <- subset(others, others$YW < 1.742)
+
+highfile_final_5$Y <- 4
+
+highfile_final_5
+
+nrow(subset(highfile_final_5))
+################################################################################
+high <- rbind(highfile_final_1, highfile_final_2, highfile_final_3, highfile_final_4, highfile_final_5)
+
+nrow(high)
+
+table(high$Y)
+
+min(high$YW)
+
+max(high$YW)
+################################################################################
+Medium
+
+Combos -- Psych/Social, Psych/Behav, Psych/Fam, Psych/others
+          Soc/Behav, Soc/Fam, Soc/Others
+          Behav/Fam, Behav/Others
+          Fam/others
+  
+  5 choose 2 --> 10
+Low
+
+Combos -- Psych/Soc/Behav, Psych/Behav/Fam, Psych/Fam/Others, Psych/Soc/Fam, 
+          Psych/Soc/Other, Psych/Behav/Other, Fam/Soc/Behav, Other/Soc/Behav, 
+          Fam/Other/Behav, Fam/Soc/Other
+          
+  
+  5 choose 3 --> 10
+
+Very Low
+
+Combos -- Psych/Soc/Behav/Fam, Psych/Behav/Fam/Other, Psych/Soc/Fam/Other, 
+          Psych/Soc/Behav/Other, Soc/Behav/Fam/Other
+  
+  5 choose 4 --> 5
+################################################################################
+  Psych
+  
+  medfile <- mainfile
+  
+  nrow(medfile)
+  
+  for (i in 1:31) 
+  {
+    if (medfile[i,]$X3==1) 
+    {
+      print(medfile[i,]$Case.ID)
+      medfile[i,]$X3 <- 0
+      temp <- 0
+      for (j in 3:30) 
+      {
+        temp = temp + (medfile[i,j]*weights[j-2])
+      }
+      medfile[i,]$YW = temp
+    }
+  }
+  
+subset(medfile,medfile$YW <= 0.258)
+
+min(mainfile$YW)
+################################################################################
+High
+
+High2 <- mainfile
+
+for (i in 1:31) 
+{
+  if (High2[i,]$X19==1) 
+  {
+    print(High2[i,]$Case.ID)
+    High2[i,]$X19 <- 0
+    temp <- 0
+    for (j in 3:30) 
+    {
+      temp = temp + (High2[i,j]*weights[j-2])
+    }
+    High2[i,]$YW = temp
+  }
+}
+
+min(High2$YW)
+nrow(subset(High2, High2$YW < 1.742))
+High2
+################################################################################
+Medium
+
+Medium2 <- mainfile
+
+for (i in 1:31) 
+{
+  if (Medium2[i,]$X19==1) 
+  {
+    print(Medium2[i,]$Case.ID)
+    Medium2[i,]$X19 <- 0
+    temp <- 0
+    for (j in 3:30) 
+    {
+      temp = temp + (Medium2[i,j]*weights[j-2])
+    }
+    Medium2[i,]$YW = temp
+  }
+}
+min(Medium2$YW)
+temp <- subset(Medium2, Medium2$YW < 0.774 & Medium2$YW > 0)
+min(temp$YW)
+nrow(subset(Medium2, Medium2$YW < 0.774 & Medium2$YW > 0))
+
+################################################################################
+Low
+
+Low2 <- Medium2
+
+for (i in 1:31) 
+{
+  if (Low2[i,]$X27==1) 
+  {
+    print(Low2[i,]$Case.ID)
+    Low2[i,]$X27 <- 0
+    temp <- 0
+    for (j in 3:30) 
+    {
+      temp = temp + (Low2[i,j]*weights[j-2])
+    }
+    Low2[i,]$YW = temp
+  }
+}
+min(Low2$YW) 
+max(Low2$YW)
+  
+nrow(subset(Low2, Low2$YW <= 0.129 & Low2$YW > 0))
+################################################################################
+High3 <- mainfile
+################################################################################
+Medium3 <- mainfile
+
+for (i in 1:31) 
+{
+  if (Medium3[i,]$X19==1) 
+  {
+    print(Medium3[i,]$Case.ID)
+    Medium3[i,]$X19 <- 0
+    temp <- 0
+    for (j in 3:30) 
+    {
+      temp = temp + (Medium3[i,j]*weights[j-2])
+    }
+    Medium3[i,]$YW = temp
+  }
+}
+################################################################################
+Low3 <- Medium3
+
+for (i in 1:31) 
+{
+  if (Low3[i,]$X28==1) 
+  {
+    print(Low3[i,]$Case.ID)
+    Low3[i,]$X28 <- 0
+    temp <- 0
+    for (j in 3:30) 
+    {
+      temp = temp + (Low3[i,j]*weights[j-2])
+    }
+    Low3[i,]$YW = temp
+  }
+}
+min(Low3$YW) 
+max(Low3$YW)
+
+min(Medium3$YW) 
+max(Medium3$YW)
+
+min(High3$YW) 
+max(High3$YW)
+
+nrow(subset(Medium3, Medium3$YW <= 1.742 & Medium3$YW > .774))
+
+nrow(subset(High3, High3$YW <= 4.742 & High3$YW > 3.774))
+
+nrow(subset(Low3, Low3$YW <= .774 & Low3$YW > 0))
+################################################################################
+
+for (i in 1:20000){
+t[i,] <- sample(c(0,1), size=7, p = c(0.9, 0.1), replace=TRUE)
+}
+
+s=matrix(0,20000,28)
+
+unique(t)
+
+Case.ID <- seq(71,200070,1)
+State <- rep('DD',200000)
+YW <- rep(0,200000)
+Y <- rep(0,200000)
+
+datasim <- as.data.frame(cbind(Case.ID,State,s,as.numeric(YW),as.numeric(Y)))
+
+names(datasim) = names(mainfile)
+
+datasim[,3:30] <- sapply(datasim[,3:30], as.numeric)
+
+for (i in 1:200000) 
+{
+    LowSim[i,]$YW = sum(LowSim[i,3:30]*weights)
+  }
+
+LowSim_subset_a <- subset(LowSim, LowSim$YW < 1.226 & LowSim$YW >= 1.097)
+
+nrow(LowSim_subset)
+
+min(datasim$YW)
+max(datasim$YW)
+
+nrow(subset(datasim, datasim$YW < 1.742))
+
+nrow(subset(datasim, datasim$YW < 0.774))
+
+nrow(subset(datasim, datasim$YW < 0.129))
+
+
+nrow(datasim)
+
+datasim_50000 <- datasim
+
+datasim_100000 <- datasim
+
+datasim_200000 <- datasim
+
+for (i in 1:200000) 
+{
+  if (datasim[i,]$X19==1) 
+  {
+    print(datasim[i,]$Case.ID)
+    datasim[i,]$X19 <- 0
+    temp <- 0
+    for (j in 3:30) 
+    {
+      temp = temp + (datasim[i,j]*weights[j-2])
+    }
+    datasim[i,]$YW = temp
+  }
+}
+
+datasim_bkp <- datasim
+
+write.csv(LowSim, file='C:/Users/gayat/Downloads/LowSim_until22.csv')
+################################################################################
+LowSim <- datasim
+
+for (i in 1:200000) 
+{
+  if (LowSim[i,]$X28==1) 
+  {
+    print(LowSim[i,]$Case.ID)
+    LowSim[i,]$X28 <- 0
+    temp <- 0
+    for (j in 3:30) 
+    {
+      temp = temp + (LowSim[i,j]*weights[j-2])
+    }
+    LowSim[i,]$YW = temp
+  }
+}
+
+nrow(subset(LowSim, LowSim$YW < 0.774))
+
+min(LowSim)
+max(LowSim$YW)
+
+NoneSim_subset <- subset(NoneSim, NoneSim$YW < 0.968)
+
+LowSim_subset <- subset(LowSim, LowSim$YW < 1.097 & LowSim$YW >= 0.968)
+
+datasim_subset <- subset(datasim, datasim$YW < 1.226 & datasim$YW >= 1.097)
+
+highsim_subset_a <- subset(datasim, datasim$YW >= 1.226)
+
+highsim_subset_a <- rbind(highsim_subset_a, mainfile)
+
+subset(datasim, datasim$YW < 1.742 & datasim$YW >= 1.226)
+
+school_shooter_db <- rbind(mainfile, datasim_subset, LowSim_subset)
+
+
+datasim_200000
+
+cid_list <- datasim$Case.ID
+
+
+
+for (i in cid_list)
+{
+  nonesim$X19[nonesim$Case.ID== i] <- datasim$X19[datasim$Case.ID==i]
+}
+
+datasim_subset_a <- subset(datasim, datasim$YW < 1.226 & datasim$YW >= 1.097)
+
+LowSim_subset_a <- subset(LowSim, LowSim$YW < 1.097 & LowSim$YW >= .968)
+
+nrow(school_shooter_db)
+
+write.csv(school_shooter_db, file='C:/Users/gayat/Downloads/school_shooter_db.csv')
+
+write.csv(datasim_subset, file='C:/Users/gayat/Downloads/datasim.csv')
+
+write.csv(LowSim_subset, file='C:/Users/gayat/Downloads/LowSim.csv')
+
+write.csv(mainfile, file='C:/Users/gayat/Downloads/high_cases.csv')
+
+LowSim_subset$Y <- 1
+
+table(school_shooter_db$Y)
+
+nrow(subset(LowSim, LowSim$YW < 0.774 & LowSim$YW >= .129))
+
+################################################################################
+None <- LowSim
+
+for (i in 1:512){
+  t[i,] <- sample(c(0,1), size=8 , prob = c(0.9, 0.1), replace=TRUE)
+}
+
+t = matrix(0, 512, 8)
+
+t <- unique(t)
+
+
+sapply(t , as.numeric)
+
+s[100,10]
+
+x1_x5 <- matrix(0,53,5)
+x7_x14 <- matrix(0, 53, 8)
+x16_x18 <- matrix(0, 53, 3)
+x20 <- rep(0, 53)
+x22 <- rep(0, 53)
+x27_x28 <- matrix(0, 53, 2)
+
+
+
+Case.ID <- seq(200029, 200081,1)
+State <- rep('DD',53)
+YW <- rep(0,53)
+Y <- rep(0,53)
+
+datasim <- as.data.frame(cbind(Case.ID,State,s,as.numeric(YW),as.numeric(Y)))
+
+nonesim <- as.data.frame(cbind(Case.ID,State,x1_x5,t[,1],x7_x14,t[,2],x16_x18,t[,8],x20,t[,3],x22,t[,4:7],x27_x28,as.numeric(YW),as.numeric(Y)))
+
+head(datasim)
+head(mainfile)
+
+names(nonesim) = names(mainfile)
+
+datasim[,3:30] <- sapply(datasim[,3:30], as.numeric)
+
+nonesim[,3:30] <- sapply(nonesim[,3:30], as.numeric)
+
+for (i in 1:53) 
+{
+  nonesim[i,]$YW = sum(nonesim[i,3:30]*weights)
+}
+
+nonesim[32:45,]
+
+nrow(subset(nonesim, nonesim$YW < 0.968))
+
+nonesim_sub <- subset(nonesim, nonesim$YW < 0.968)
+
+nrow(nonesim_sub)
+
+school_shooter_db <- rbind(highsim_subset_a, datasim_subset_a, LowSim_subset_a, nonesim_sub)
+
+$Y <- 1
+
+table(nonesim_sub$Y)
+
+nrow(school_shooter_db)
+
+mainfile[32,]
+
+school_shooter_db <- rbind(school_shooter_db, nonesim_sub)
+
+write.csv(school_shooter_db, file='C:/Users/gayat/Documents/AI Sara/Master/Project_1/data/school_shooter_db.csv')
+################################################################################
+Testing
+  
+r = matrix(0, 5000, 28)
+  
+for (i in 1:5000)
+{
+  r[i,] <- sample(c(0,1), prob = c(0.9, 0.1), size=28 , replace=TRUE)
+}
+
+Case.ID <- seq(1, 5000, 1)
+State <- rep('VA',5000)
+YW <- rep(0,5000)
+Y <- rep(0,5000)
+
+test_file <- as.data.frame(cbind(Case.ID,State,r,as.numeric(YW),as.numeric(Y)))
+
+names(test_file) = names(mainfile)
+
+test_file[,3:30] <- sapply(test_file[,3:30], as.numeric)
+
+for (i in 1:200000) 
+{
+  datasim[i,]$YW = sum(datasim[i,3:30]*weights)
+}
+
+
+New bounds ------- 
+  
+  high -- - 1.226 
+  med  -- 1.226 - 1.097
+  low  -- 1.097 - 0.968
+  None -- 0.968 - 0
+  
+test_file[1,3:30]
+
+test_file_subset <- subset(test_file, test_file$YW >= 1.742)
+
+test_file_subset2 <- subset(test_file, test_file$YW < 1.742 & test_file$YW >= 0.774)
+
+test_file_subset3 <- subset(test_file, test_file$YW < 0.774 & test_file$YW >= 0.129)
+
+test_file_subset4 <- subset(test_file, test_file$YW < 0.129)
+
+test_file_subset$Y <- 3
+
+table(test_file_subset$Y)
+
+subset(test_file_subset2, test_file_subset2$X19==1 & test_file_subset2$Y == 2)
+
+test_subset_1 = subset(test_file_subset, test_file_subset$X19==1 & test_file_subset$Y == 3)
+
+test_subset_0 = subset(test_file_subset, test_file_subset$X19==0 & test_file_subset$Y == 3)
+
+nrow(test_subset_0)
+
+test_subset_0$Y <- 2
+
+test_file_subset2$Y <- 2
+
+test_file_subset3$Y <- 1
+
+test_file_subset4$Y <- 0
+
+test_file_final <- rbind(test_subset_0,test_subset_1, test_file_subset2, test_file_subset3, test_file_subset4)
+
+write.csv(test_file_final, file='C:/Users/gayat/Documents/AI Sara/Master/Project_1/data/daily_data.csv')
+
+
+nrow(test_file_subset4)
+
+subset(test_file, test_file$Y==0)
+
+subset(test_file_subset2, test_file_subset2$X19 == 1)
+
+
+#####################################################################################
+
+
+nrow(subset(datasim, datasim$YW < 1.742 & datasim$YW >= 0.774))
+
+
+HighSim <- subset(datasim, datasim$YW > 1.742)
+
+HighSim$Y <- 3
+
+school_shooter_db <- rbind(school_shooter_db, HighSim)
+
+nrow(school_shooter_db)
+
+write.csv(school_shooter_db, file='C:/Users/gayat/Downloads/school_shooter_db.csv')
+#####################################################################################
+test_file2 <- test_file
+
+for (i in 1:5000) 
+{
+  test_file2[i,]$YW = sum(test_file2[i,3:30]*weights)
+}
+
+
+New bounds ------- 
+  
+high -- - 1.226 
+med  -- 1.226 - 1.097
+low  -- 1.097 - 0.968
+None -- 0.968 - 0
+
+test_file2[1,3:30]
+
+test_file_subset_a <- subset(test_file2, test_file2$YW >= 1.742)
+
+test_file_subset_b <- subset(test_file2, test_file2$YW < 1.742 & test_file2$YW >= 1.097)
+
+test_file_subset_c <- subset(test_file2, test_file2$YW < 1.097 & test_file2$YW >= 0.968)
+
+test_file_subset_d <- subset(test_file2, test_file2$YW < 0.968)
+
+nrow(test_file_subset_d)
+
+test_file_final2 <- rbind(test_file_subset_a, test_file_subset_b, test_file_subset_c, test_file_subset_d)
+
+test_file_subset_a$Y <- 3
+
+test_file_subset_b$Y <- 2
+
+test_file_subset_c$Y <- 1
+
+test_file_subset_d$Y <- 0
+
+write.csv(test_file_final2, file='C:/Users/gayat/Downloads/daily_data_new.csv')
+
+
+
+
+
+################################################################################
+
+#Decision tree
+
+finalsim <- datasim_200000
+
+finalsim_1 <- subset(finalsim, finalsim$X19 == 1 & (finalsim$X1==1 | finalsim$X2==1 | finalsim$X4==1 | 
+                                                             finalsim$X10==1 | finalsim$X11==1 | finalsim$X22==1 |
+                                                             finalsim$X12==1 | finalsim$X28==1))
+
+finalsim_1$Y<-3
+
+finalsim_2 <- subset(finalsim, finalsim$X19 == 1 & (finalsim$X1==0 & finalsim$X2==0 & finalsim$X4==0 & 
+                                                      finalsim$X10==0 & finalsim$X11==0 & finalsim$X22==0 &
+                                                      finalsim$X12==0 & finalsim$X28==0)
+                                                 & (finalsim$X5==1 | finalsim$X7==1 | finalsim$X8==1 | 
+                                                     finalsim$X9==1 | finalsim$X17==1 | finalsim$X27==1 |
+                                                     finalsim$X13==1 | finalsim$X3==1 | finalsim$X14==1 |
+                                                    finalsim$X18==1 | finalsim$X20==1 | finalsim$X16==1
+                                                  ))
+
+finalsim_2$Y<-2
+
+finalsim_3 <- subset(finalsim, finalsim$X19 == 1 & (finalsim$X1==0 & finalsim$X2==0 & finalsim$X4==0 & 
+                                                      finalsim$X10==0 & finalsim$X11==0 & finalsim$X22==0 &
+                                                      finalsim$X12==0 & finalsim$X28==0)
+                                                 & (finalsim$X5==0 & finalsim$X7==0 & finalsim$X8==0 & 
+                                                      finalsim$X9==0 & finalsim$X17==0 & finalsim$X27==0 &
+                                                      finalsim$X13==0 & finalsim$X3==0 & finalsim$X14==0 &
+                                                      finalsim$X18==0 & finalsim$X20==0 & finalsim$X16==0
+                                                 )
+                                                &  (finalsim$X26==1 | finalsim$X25==1 | finalsim$X24==1 | 
+                                                    finalsim$X23==1 | finalsim$X21==1 | finalsim$X15==1 |
+                                                    finalsim$X6==1 )
+                                                    )
+
+#none available for finalsim3...hence generating random data
+
+m = matrix(0,2560,8)
+
+for (i in 1:2560)
+{
+  m[i,] <- sample(c(0,1),  size=8 , replace=TRUE)
+}
+
+x1_x5 <- matrix(0,256,5)
+x7_x14 <- matrix(0, 256, 8)
+x16_x18 <- matrix(0, 256, 3)
+x20 <- rep(0, 256)
+x22 <- rep(0, 256)
+x27_x28 <- matrix(0, 256, 2)
+
+m <- unique(m)
+
+finalsim_3 <- as.data.frame(cbind(Case.ID,State,x1_x5,m[,1],x7_x14,m[,2],x16_x18,m[,8],x20,m[,3],x22,m[,4:7],x27_x28,as.numeric(YW),as.numeric(Y)))
+
+names(finalsim_3)=names(mainfile)
+
+finalsim_3$Y <- 1
+
+Case.ID <- seq(1, 256, 1)
+State <- rep('VA',256)
+YW <- rep(0,256)
+Y <- rep(0,256)
+
+finalsim_a <- subset(finalsim, finalsim$X19 == 0 & (finalsim$X1==1 | finalsim$X2==1 | finalsim$X4==1 | 
+                                                      finalsim$X10==1 | finalsim$X11==1 | finalsim$X22==1 |
+                                                      finalsim$X12==1 | finalsim$X28==1))
+
+finalsim_a$Y<-2
+
+finalsim_b <- subset(finalsim, finalsim$X19 == 0 & (finalsim$X1==0 & finalsim$X2==0 & finalsim$X4==0 & 
+                                                      finalsim$X10==0 & finalsim$X11==0 & finalsim$X22==0 &
+                                                      finalsim$X12==0 & finalsim$X28==0)
+                     & (finalsim$X5==1 | finalsim$X7==1 | finalsim$X8==1 | 
+                          finalsim$X9==1 | finalsim$X17==1 | finalsim$X27==1 |
+                          finalsim$X13==1 | finalsim$X3==1 | finalsim$X14==1 |
+                          finalsim$X18==1 | finalsim$X20==1 | finalsim$X16==1
+                     ))
+
+finalsim_b$Y<-1
+
+#none available for finalsim_c...hence generating random data
+
+n = matrix(0,2560,7)
+
+for (i in 1:2560)
+{
+  n[i,] <- sample(c(0,1),  size=7 , replace=TRUE)
+}
+
+x1_x5 <- matrix(0,128,5)
+x7_x14 <- matrix(0, 128, 8)
+x16_x19 <- matrix(0, 128, 4)
+x20 <- rep(0, 128)
+x22 <- rep(0, 128)
+x27_x28 <- matrix(0, 128, 2)
+
+n <- unique(n)
+
+finalsim_c <- as.data.frame(cbind(Case.ID,State,x1_x5,n[,1],x7_x14,n[,2],x16_x19,x20,n[,3],x22,n[,4:7],x27_x28,as.numeric(YW),as.numeric(Y)))
+
+names(finalsim_c)=names(mainfile)
+
+finalsim_c$Y <- 0
+
+Case.ID <- seq(1, 128, 1)
+State <- rep('VA',128)
+YW <- rep(0,128)
+Y <- rep(0,128)
+
+
+
+
+###############################################
+
+Combining
+
+
+school_shooter_db <- rbind(mainfile, finalsim_1, finalsim_2, finalsim_3, finalsim_a, finalsim_b, finalsim_c)
+
+write.csv(school_shooter_db, file='C:/Users/gayat/Documents/AI Sara/Master/Project_1/data/school_shooter_db.csv')
+
+
+############################## daily data ###########################################################
+
+
+finalsim <- test_file
+
+finalsim_1 <- subset(finalsim, finalsim$X19 == 1 & (finalsim$X1==1 | finalsim$X2==1 | finalsim$X4==1 | 
+                                                      finalsim$X10==1 | finalsim$X11==1 | finalsim$X22==1 |
+                                                      finalsim$X12==1 | finalsim$X28==1))
+
+finalsim_1$Y<-3
+
+finalsim_2 <- subset(finalsim, finalsim$X19 == 1 & (finalsim$X1==0 & finalsim$X2==0 & finalsim$X4==0 & 
+                                                      finalsim$X10==0 & finalsim$X11==0 & finalsim$X22==0 &
+                                                      finalsim$X12==0 & finalsim$X28==0)
+                     & (finalsim$X5==1 | finalsim$X7==1 | finalsim$X8==1 | 
+                          finalsim$X9==1 | finalsim$X17==1 | finalsim$X27==1 |
+                          finalsim$X13==1 | finalsim$X3==1 | finalsim$X14==1 |
+                          finalsim$X18==1 | finalsim$X20==1 | finalsim$X16==1
+                     ))
+
+finalsim_2$Y<-2
+
+finalsim_3 <- subset(finalsim, finalsim$X19 == 1 & (finalsim$X1==0 & finalsim$X2==0 & finalsim$X4==0 & 
+                                                      finalsim$X10==0 & finalsim$X11==0 & finalsim$X22==0 &
+                                                      finalsim$X12==0 & finalsim$X28==0)
+                     & (finalsim$X5==0 & finalsim$X7==0 & finalsim$X8==0 & 
+                          finalsim$X9==0 & finalsim$X17==0 & finalsim$X27==0 &
+                          finalsim$X13==0 & finalsim$X3==0 & finalsim$X14==0 &
+                          finalsim$X18==0 & finalsim$X20==0 & finalsim$X16==0
+                     )
+                     &  (finalsim$X26==1 | finalsim$X25==1 | finalsim$X24==1 | 
+                           finalsim$X23==1 | finalsim$X21==1 | finalsim$X15==1 |
+                           finalsim$X6==1 )
+)
+nrow(finalsim_3)
+
+finalsim_a <- subset(finalsim, finalsim$X19 == 0 & (finalsim$X1==1 | finalsim$X2==1 | finalsim$X4==1 | 
+                                                      finalsim$X10==1 | finalsim$X11==1 | finalsim$X22==1 |
+                                                      finalsim$X12==1 | finalsim$X28==1))
+
+finalsim_a$Y<-2
+
+finalsim_b <- subset(finalsim, finalsim$X19 == 0 & (finalsim$X1==0 & finalsim$X2==0 & finalsim$X4==0 & 
+                                                      finalsim$X10==0 & finalsim$X11==0 & finalsim$X22==0 &
+                                                      finalsim$X12==0 & finalsim$X28==0)
+                     & (finalsim$X5==1 | finalsim$X7==1 | finalsim$X8==1 | 
+                          finalsim$X9==1 | finalsim$X17==1 | finalsim$X27==1 |
+                          finalsim$X13==1 | finalsim$X3==1 | finalsim$X14==1 |
+                          finalsim$X18==1 | finalsim$X20==1 | finalsim$X16==1
+                     ))
+
+finalsim_b$Y<-1
+
+finalsim_c <- subset(finalsim, finalsim$X19 == 0 & (finalsim$X1==0 & finalsim$X2==0 & finalsim$X4==0 & 
+                                                      finalsim$X10==0 & finalsim$X11==0 & finalsim$X22==0 &
+                                                      finalsim$X12==0 & finalsim$X28==0)
+                     & (finalsim$X5==0 & finalsim$X7==0 & finalsim$X8==0 & 
+                          finalsim$X9==0 & finalsim$X17==0 & finalsim$X27==0 &
+                          finalsim$X13==0 & finalsim$X3==0 & finalsim$X14==0 &
+                          finalsim$X18==0 & finalsim$X20==0 & finalsim$X16==0
+                     )
+                     &  (finalsim$X26==1 | finalsim$X25==1 | finalsim$X24==1 | 
+                           finalsim$X23==1 | finalsim$X21==1 | finalsim$X15==1 |
+                           finalsim$X6==1 )
+)
+nrow(finalsim_c)
+
+finalsim_c$Y <- 0
+###############################################
+
+
+daily_data <- rbind(finalsim_1, finalsim_2, finalsim_3, finalsim_a, finalsim_b, finalsim_c)
+
+write.csv(daily_data, file='C:/Users/gayat/Documents/AI Sara/Master/Project_1/data/daily_data.csv')
+
+
+head(school_shooter_db)
+head(daily_data)
+
+
+#high covariates - X1, X2, X4, X10, X11, X12, X22, X28
+#Med covariates - X3, X5, X7, X8, X9, X13, X14, X16, X17, X18, X20, X27
+#low covariates - X6, X15, X21, X23, X24, X25, X26
+
+
+lm(Y ~ X1+X2, data=school_shooter_db)
+
+school_shooter_db[,3:30] <- sapply(school_shooter_db[,3:30], as.numeric)
+
+school_shooter_db[,32] <- sapply(school_shooter_db[,32], as.numeric)
+
+
+head(school_shooter_db[,3:30])
+
+library(rpart)
+library(rpart.plot)
+
+fit <- rpart(Y ~ X1+X2+X3+X4+X5+X6+X7+X8+X9+X10+
+                 X11+X12+X13+X14+X15+X16+X17+X18+
+                 X19+X20+X21+X22+X23+X24+X25+X26+
+                 X27+X28, data=school_shooter_db, method='class')
+
+fit <- rpart(Y~., data=test_file_tree, method='anova')
+
+rpart.plot(fit,extra=100)
+
+test_file_tree <- cbind(test_file[,3:30], test_file[,32])
+
+names(test_file_tree)[names(test_file_tree)=='test_file$Y'] <- "Y"
+
+head(test_file_tree)
+###################################################################
+
+
+w = matrix(0, 5000, 28)
+
+for (i in 1:5000)
+{
+  w[i,] <- sample(c(0,1), prob = c(0.9, 0.1), size=28 , replace=TRUE)
+}
+
+Case.ID <- seq(1, 5000, 1)
+State <- rep('VA',5000)
+YW <- rep(0,5000)
+Y <- rep(0,5000)
+
+extratest <- as.data.frame(cbind(Case.ID,State,w,as.numeric(YW),as.numeric(Y)))
+
+names(extratest) = names(mainfile)
+
+
+extratest_1 <- subset(extratest, extratest$X19 == 1 & (extratest$X1==1 | extratest$X2==1 | extratest$X4==1 | 
+                                                      extratest$X10==1 | extratest$X11==1 | extratest$X22==1 |
+                                                        extratest$X12==1 | extratest$X28==1))
+
+extratest_1$Y<-3
+
+extratest_2 <- subset(extratest, extratest$X19 == 1 & (extratest$X1==0 & extratest$X2==0 & extratest$X4==0 & 
+                                                         extratest$X10==0 & extratest$X11==0 & extratest$X22==0 &
+                                                         extratest$X12==0 & extratest$X28==0)
+                     & (extratest$X5==1 | extratest$X7==1 | extratest$X8==1 | 
+                          extratest$X9==1 | extratest$X17==1 | extratest$X27==1 |
+                          extratest$X13==1 | extratest$X3==1 | extratest$X14==1 |
+                          extratest$X18==1 | extratest$X20==1 | extratest$X16==1
+                     ))
+
+extratest_2$Y<-2
+
+extratest_3 <- subset(extratest, extratest$X19 == 1 & (extratest$X1==0 & extratest$X2==0 & extratest$X4==0 & 
+                                                         extratest$X10==0 & extratest$X11==0 & extratest$X22==0 &
+                                                         extratest$X12==0 & extratest$X28==0)
+                     & (extratest$X5==0 & extratest$X7==0 & extratest$X8==0 & 
+                          extratest$X9==0 & extratest$X17==0 & extratest$X27==0 &
+                          extratest$X13==0 & extratest$X3==0 & extratest$X14==0 &
+                          extratest$X18==0 & extratest$X20==0 & extratest$X16==0
+                     )
+                     &  (extratest$X26==1 | extratest$X25==1 | extratest$X24==1 | 
+                           extratest$X23==1 | extratest$X21==1 | extratest$X15==1 |
+                           extratest$X6==1 )
+)
+
+extratest_3$Y<-1
+
+extratest_a <- subset(extratest, extratest$X19 == 0 & (extratest$X1==1 | extratest$X2==1 | extratest$X4==1 | 
+                                                         extratest$X10==1 | extratest$X11==1 | extratest$X22==1 |
+                                                         extratest$X12==1 | extratest$X28==1))
+
+extratest_a$Y<-2
+
+extratest_b <- subset(extratest, extratest$X19 == 0 & (extratest$X1==0 & extratest$X2==0 & extratest$X4==0 & 
+                                                         extratest$X10==0 & extratest$X11==0 & extratest$X22==0 &
+                                                         extratest$X12==0 & extratest$X28==0)
+                      & (extratest$X5==1 | extratest$X7==1 | extratest$X8==1 | 
+                           extratest$X9==1 | extratest$X17==1 | extratest$X27==1 |
+                           extratest$X13==1 | extratest$X3==1 | extratest$X14==1 |
+                           extratest$X18==1 | extratest$X20==1 | extratest$X16==1
+                      ))
+
+extratest_b$Y<-1
+
+extratest_c <- subset(extratest, extratest$X19 == 0 & (extratest$X1==0 & extratest$X2==0 & extratest$X4==0 & 
+                                                         extratest$X10==0 & extratest$X11==0 & extratest$X22==0 &
+                                                         extratest$X12==0 & extratest$X28==0)
+                      & (extratest$X5==0 & extratest$X7==0 & extratest$X8==0 & 
+                           extratest$X9==0 & extratest$X17==0 & extratest$X27==0 &
+                           extratest$X13==0 & extratest$X3==0 & extratest$X14==0 &
+                           extratest$X18==0 & extratest$X20==0 & extratest$X16==0
+                      )
+                      &  (extratest$X26==1 | extratest$X25==1 | extratest$X24==1 | 
+                            extratest$X23==1 | extratest$X21==1 | extratest$X15==1 |
+                            extratest$X6==1 ))
+                      
+extratest_c$Y<-0
+
+daily_data <- rbind(extratest_1, extratest_2, extratest_3, extratest_a, extratest_b, extratest_c)
+
+write.csv(daily_data, file='C:/Users/gayat/Documents/AI Sara/Master/Project_1/data/daily_data.csv')
+
+dotchart <- read.csv(file='C:/Users/gayat/Documents/AI Sara/Master/Project_1/data/dotchart.csv')
+
+# Plot and color by groups
+grps <- as.factor(dotchart$gno)
+my_cols <- c("#FF0000", "#0000FF", "#800000","#013220")
+dotchart(dotchart$prob, labels = dotchart$desc,
+         groups = grps, gcolor = "black",
+         color = my_cols[grps],
+         cex = 0.8,  pch = 19, xlab = "Probability",
+         main="Covariate Probability Distribution")
+
+
+
+

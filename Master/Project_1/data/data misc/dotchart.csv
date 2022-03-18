@@ -1,0 +1,28 @@
+gno,group,covariate,desc,prob
+1,High,X12,Homicidal Triad - Arson/Animal Cruelty,0.258
+1,High,X28,Criminal Record,0.29
+1,High,X22,Parental Neglect,0.419
+1,High,X10,Verbal Shooting Threats,0.419
+1,High,X1,Mental Illness,0.452
+1,High,X2,Suicide/Self Harm Risk,0.516
+1,High,X11,Physical Agression/ Anger Management Issues,0.548
+1,High,X4,Bullied,0.581
+2,Medium,X27,Substance Abuse,0.194
+2,Medium,X7,Antisocial,0.194
+2,Medium,X9,Negative External Influence - Parent/Peer,0.194
+2,Medium,X5,Suspension/Expulsion Records,0.258
+2,Medium,X8,Isolated,0.29
+2,Medium,X17,Parental Separation,0.29
+3,Low,X3,Counseling,0.129
+3,Low,X13,Racism,0.129
+3,Low,X14,Narcissistic,0.129
+3,Low,X16,Affinity for Violence,0.129
+3,Low,X18,Financial Stress,0.129
+3,Low,X20,Parental Abuse,0.129
+4,VeryLow,X21,Foster Care,0.032
+4,VeryLow,X23,Family Suicidal History,0.032
+4,VeryLow,X24,Visit from Social Services,0.032
+4,VeryLow,X25,Family Member with Criminal Record,0.032
+4,VeryLow,X6,Sexual Assault Victim,0.065
+4,VeryLow,X15,Lack of Empathy,0.065
+4,VeryLow,X26,Death of an Immediate Family Member,0.065
